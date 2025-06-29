@@ -1,25 +1,34 @@
 # Finicial Analyzer
 ## Description
-The Finicial Analyzer is a comprehensive, end-to-end system designed to process and analyze bank statements with advanced OCR, data visualization, and natural language query capabilities. It enables users to extract key information from statements in multiple formats, perform bulk processing, visualize transaction patterns, and interact with data via a conversational interface powered by Retrieval-Augmented Generation (RAG). Supporting multiple large language models (LLMs), including cloud-based APIs and local deployments, the system showcases expertise in data science, machine learning, and natural language processing, making it an ideal portfolio project for data scientist or ML engineer roles.
+A smart financial management tool that processes multi-format inputs (PDF, CSV, TXT, PNG, JPEG) to extract invoice fields using OCR and LLM/YOLO models. Extracted data is stored in a Vector DB for natural language queries via RAG and visualized for financial insights. Built and validated using a Kaggle invoice dataset.
 
 ## Features
 
-- Multi-Format OCR Extraction: Extracts key fields (e.g., amount, date, account number, transaction description) from bank statements in PDF, JPG, or PNG formats using two OCR methods:
-  - EasyOCR for rapid, multi-language text extraction.
-  - YOLOv8 + Tesseract for precise field detection in complex layouts.
+- Multi-Format Input: Supports PDF, CSV, TXT, PNG, and JPEG files.
+
+- Field Extraction:
+  - EasyOCR + Google Gemini: High-accuracy OCR with multimodal LLM for field extraction (e.g., client name, invoice number, date).
+   - YOLOv8 + Tesseract: Precise field localization and text extraction.
+
+- Data Storage: Stores extracted fields in FAISS Vector DB for efficient retrieval.
+
+- RAG Q&A: Enables natural language queries (e.g., "What is my total spending?") via Gemini or OpenAI LLM.
+
+- Visualization: Generates financial trends and distributions using Plotly.
 
 
-- Batch File Upload: Supports uploading multiple files simultaneously through an intuitive Streamlit web interface, enabling efficient bulk processing.
-Automated Data Visualization: Generates interactive visualizations, including:
-Line charts for transaction trends over time.
-Pie charts for amount distribution by category or range.
-Bar charts for transaction frequency by date or type.
+## Tech Stack
+
+- OCR: EasyOCR, Tesseract, YOLOv8
+
+- LLM: Google Gemini, OpenAI GPT-4
+
+- Data Processing: PyPDF2, pdf2image, Pandas
+
+- Vector DB: Milvus
+
+- Frontend: Streamlit
+
+- Visualization: Plotly
 
 
-- RAG-Powered Natural Language Q&A: Allows users to query extracted data in natural language (e.g., "What is my total spending this month?" or "List all transactions over $500") using LangChain and a vector database (FAISS/Chroma) for context-aware responses.
-    - Multi-LLM Support: Integrates multiple LLMs for flexible Q&A:
-  - Cloud-based: OpenAI ChatGPT, Google Gemini.
-Local: LLaMA, DeepSeek (optimized for GPU/CPU inference).
-
-
-- Scalable and Modular Design: Organized into modular components (preprocessing, OCR, visualization, RAG, LLM), facilitating maintenance and future enhancements.
