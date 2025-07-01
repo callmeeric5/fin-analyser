@@ -5,6 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "clearml>=2.0.1",
+    "dataset>=1.6.2",
+    "datasets>=3.6.0",
     "easyocr>=1.7.2",
     "faiss-cpu>=1.11.0",
     "google-generativeai>=0.8.5",
@@ -12,11 +15,15 @@ dependencies = [
     "langchain>=0.3.26",
     "matplotlib>=3.10.3",
     "numpy>=2.3.1",
+    "opencv-python>=4.11.0.86",
     "pandas>=2.3.0",
     "pdf2image>=1.17.0",
+    "pillow>=11.2.1",
     "plotly>=6.2.0",
     "pypdf2>=3.0.1",
     "pytesseract>=0.3.13",
+    "pytest>=8.4.1",
     "streamlit>=1.46.1",
+    "supervision>=0.25.1",
     "ultralytics>=8.3.160",
 ]
