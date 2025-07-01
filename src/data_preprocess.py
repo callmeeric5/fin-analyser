@@ -4,19 +4,28 @@ from pdf2image import convert_from_bytes
 from PIL import Image
 import pandas as pd
 import streamlit as st
+from io import BytesIO
 
 
 def preprocess(file):
+    byte_input = file.read()
     output = {"text": "", "img": []}
     file_suffix = file.name.split(".")[-1].lower()
-    print(file_suffix)
-    if file_suffix == "pdf":
-        print("start")
-        reader = PdfReader(file)
-        for page in reader.pages:
-            output["text"] += page.extract_text()
+    match file_suffix:
+        case "pdf":
+            reader = PdfReader(BytesIO(byte_input))
+            for page in reader.pages:
+                output["text"] += page.extract_text() or ""
+            imges = convert_from_bytes(byte_input)
+            output["img"] = imges
+        case "csv":
+            df = pd.read_csv(BytesIO(byte_input))
+            output["text"] = df.to_string()
+        case "txt" | "md":
+            output["text"] = byte_input.decode("utf-8")
+        case "png" | "jpg" | "jpeg":
+            output["img"] = Image.open(BytesIO(byte_input))
 
-        imges = convert_from_bytes(file.read())
-        output["img"] = imges
-
+        case _:
+            output["text"] = "unsupported file type"
     return output

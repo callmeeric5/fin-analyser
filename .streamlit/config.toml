@@ -1,0 +1,5 @@
+# This file configures Streamlit's behavior.
+
+[server]
+runOnSave = true
+fileWatcherType = "auto"

@@ -15,9 +15,7 @@ if files:
     extracted_data = []
     for file in files:
         output = preprocess(file)
-        st.write(output)
         st.write(output["text"])
-        st.write(output["img"])
 
 # TODO OCR Parse
 # TODO RAG
