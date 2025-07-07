@@ -1,14 +1,14 @@
 # Finicial Analyzer
 ## Description
-A smart financial management tool that processes multi-format inputs (PDF, CSV, TXT, PNG, JPEG) to extract invoice fields using OCR and LLM/YOLO models. Extracted data is stored in a Vector DB for natural language queries via RAG and visualized for financial insights. Built and validated using a Kaggle invoice dataset.
+A smart financial management tool that processes multi-format inputs (PDF, CSV, TXT, PNG, JPEG) to extract invoice fields using OCR and LLMmodels. Extracted data is stored in a Vector DB for natural language queries via RAG and visualized for financial insights. Built and validated using a Kaggle invoice dataset.
 
 ## Features
 
 - Multi-Format Input: Supports PDF, CSV, TXT, PNG, and JPEG files.
 
 - Field Extraction:
-  - EasyOCR + Google Gemini: High-accuracy OCR with multimodal LLM for field extraction (e.g., client name, invoice number, date).
-   - YOLOv8 + Tesseract: Precise field localization and text extraction.
+EasyOCR + Google Gemini: High-accuracy OCR with multimodal LLM for field extraction (e.g., client name, invoice number, date).
+
 
 - Data Storage: Stores extracted fields in FAISS Vector DB for efficient retrieval.
 
@@ -19,7 +19,7 @@ A smart financial management tool that processes multi-format inputs (PDF, CSV, 
 
 ## Tech Stack
 
-- OCR: EasyOCR, Tesseract, YOLOv8
+- OCR: EasyOCR
 
 - LLM: Google Gemini, OpenAI GPT-4
 

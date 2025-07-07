@@ -16,7 +16,7 @@ def preprocess(file):
             reader = PdfReader(BytesIO(byte_input))
             for page in reader.pages:
                 output["text"] += page.extract_text() or ""
-            imges = convert_from_bytes(byte_input)
+            imges = convert_from_bytes(byte_input,dpi=150,thread_count=4)
             output["img"] = imges
         case "csv":
             df = pd.read_csv(BytesIO(byte_input))
