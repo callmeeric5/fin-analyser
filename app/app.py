@@ -3,6 +3,7 @@ from src.data_preprocess import preprocess
 from src.ocr import OCR
 from PIL import Image
 
+
 st.title("Financial Assistant")
 st.write("👋 Use your personal financial assistant to undertand your spends well!")
 st.write("Upload your first invoice, bank statement,receipt, etc to start 👇")
@@ -35,10 +36,9 @@ if file:
         for idx, img in enumerate(images, start=1):
             ocr_results = ocr_engine.extract(img)  # list[dict]
 
-            # Build a single string of all words (optional)
-            page_text = " ".join(r["text"] for r in ocr_results)
+            page_text = " ".join(r["text"] for r in ocr_results)  # type: ignore
 
-            annotated = ocr_engine.annotate(img, results=ocr_results, scale=0.4)
+            annotated = ocr_engine.annotate(img, results=ocr_results)
 
             with st.expander(f"Page / Image {idx}"):
                 st.image(annotated, caption="OCR annotations", use_container_width=True)
