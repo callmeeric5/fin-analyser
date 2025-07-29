@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 
-def display_Qwen(data):
+def display(data):
     doc_type = (data.get("document_type") or "").lower()
 
     st.markdown(
@@ -33,12 +33,18 @@ def display_Qwen(data):
         items = data.get("items", [])
         if items:
             st.markdown("#### 🛒 Items Purchased")
-            df = get_filtered_df(items, ["item_name", "item_quantity", "item_value"])
+            df = get_filtered_df(items, ["item_name", "item_value"])
             df = df.rename(
                 columns={
                     "item_name": "Name",
+                    "item_desc": "Description",
+                    "item_key": "Item Key",
                     "item_quantity": "Qty",
+                    "item_net_price": "Net Price",
                     "item_value": "Value",
+                    "item_net_worth": "Net Worth",
+                    "item_vat": "VAT",
+                    "item_gross_worth": "Gross Worth",
                 }
             )
             st.dataframe(df.fillna(""), hide_index=True, use_container_width=True)
@@ -56,12 +62,12 @@ def display_Qwen(data):
         col1, col2 = st.columns(2)
         with col1:
             st.markdown(f"**Seller:** {data.get('seller','') or '-'}")
+            st.markdown(f"**Seller Address:** {data.get('store_address','') or '-'}")
             st.markdown(f"**Invoice No:** {data.get('invoice_no','') or '-'}")
-            st.markdown(f"**Invoice Date:** {data.get('invoice_date','') or '-'}")
         with col2:
             st.markdown(f"**Client:** {data.get('client','') or '-'}")
             st.markdown(f"**IBAN:** {data.get('iban','') or '-'}")
-            st.markdown(f"**Date:** {data.get('date','') or '-'}")
+            st.markdown(f"**Invoice Date:** {data.get('invoice_date','') or '-'}")
 
         items = data.get("items", [])
         if items:
@@ -91,7 +97,6 @@ def display_Qwen(data):
         st.markdown(f"**Total Gross Worth:** {data.get('total_gross_worth','') or '-'}")
         st.markdown(f"**Tax:** {data.get('tax','') or '-'}")
         st.markdown(f"**Total:** {data.get('total','') or '-'}")
-        st.markdown(f"**Tips:** {data.get('tips','') or '-'}")
 
     else:
         st.markdown("#### 📄 Document Info")
