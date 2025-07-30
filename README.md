@@ -1,13 +1,17 @@
-# Finicial Analyzer
+# Invoice & Receipt Analyzer
 ## Description
-A smart financial management tool that processes multi-format inputs (PDF, CSV, TXT, PNG, JPEG) to extract invoice fields using OCR and LLM models. 
+A smart financial management tool that processes multi-format inputs (PDF, CSV, TXT, PNG, JPEG) to extract invoice fields using OCR and LLM models and display visualizations for the finaicial analyze.
 
 ## Features
 
 - Multi-Format Input: Supports PDF, CSV, TXT, PNG, and JPEG files.
 
 - Field Extraction:
-EasyOCR + Google Gemini: High-accuracy OCR with multimodal LLM for field extraction (e.g., client name, invoice number, date).
+
+- - EasyOCR: Detected area annonated box
+- - Qwen2.5: Fine tuned on Receipt&Invoice Dataset
+- - Llama4: 
+- - Gemini Flask
 
 - Visualization: Generates financial trends and distributions using Plotly.
 
@@ -18,10 +22,25 @@ EasyOCR + Google Gemini: High-accuracy OCR with multimodal LLM for field extract
 
 - LLM: Gemini, Llama, Qwen
 
-- Data Processing: PyPDF2, pdf2image, Pandas
+- PDF Processing: PyPDF2, pdf2image
 
 - Frontend: Streamlit
 
-- Visualization: Plotly
+- Visualization: Pandas, Plotly
 
 
+## Run
+
+### Local Install
+
+```zsh
+cd FIN-ANALYSER
+uv sync
+./run.sh
+```
+
+### Docker Install
+```zsh
+docker build -t fin-analyser . 
+docker run -e GROQ_API_KEY={} -e GEMINI_API_KEY={} -p 8501:8501 fin-analyser
+```
